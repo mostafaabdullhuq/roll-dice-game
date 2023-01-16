@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: "Roboto", sans-serif;
+}
+
+div.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: linear-gradient(#c95d5dc5, #9198e5);
+}
+
+.centered-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-container {
+    width: 70vw;
+    height: 60vh;
+    overflow: hidden;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    position: relative;
+}
+
+.center-controls {
+    position: absolute;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.game-container .player {
+    width: 50%;
+    height: 100%;
+    background-color: rgba(187, 187, 187, 0.5);
+    flex-direction: column;
+    gap: 20px;
+    font-size: 50px;
+}
+
+.game-container .player.active {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.bor {
+    border: 1px solid red;
+}
+
+.play-controls {
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    border: none;
+    background-color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 7px 20px;
+    background-color: rgba(238, 238, 238, 0.495);
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+button:hover {
+    background-color: rgba(238, 238, 238, 0.8);
+}

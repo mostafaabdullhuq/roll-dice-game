@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+
+        <link rel="stylesheet" href="style.css" />
+        <title>Roll Dice</title>
+    </head>
+    <body class="centered-flex">
+        <div class="background"></div>
+        <div class="game-container centered-flex">
+            <div class="player player_1 centered-flex active">
+                <div class="player__name">Player 1</div>
+                <div class="player__score">0</div>
+            </div>
+            <div class="player player_2"></div>
+            <div class="center-section">
+                <div class="center-controls centered-flex">
+                    <button class="new-game">🆕 New Game</button>
+                    <div class="dice-container">
+                        <div class="dice dice_1"></div>
+                        <div class="dice dice_2"></div>
+                        <div class="dice dice_3"></div>
+                        <div class="dice dice_4"></div>
+                        <div class="dice dice_5"></div>
+                        <div class="dice dice_6"></div>
+                    </div>
+
+                    <div class="play-controls centered-flex">
+                        <button class="btn btn_roll">🎲 Roll Dice</button>
+                        <button class="btn btn_hold">🔄 Hold</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
