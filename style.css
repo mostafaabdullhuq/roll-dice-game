@@ -38,6 +38,8 @@ div.background {
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     position: relative;
+    max-width: 1200px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .center-controls {
@@ -62,10 +64,29 @@ div.background {
     flex-direction: column;
     gap: 20px;
     font-size: 50px;
+    padding: 120px 0;
+    justify-content: space-between;
 }
 
 .game-container .player.active {
     background-color: rgba(255, 255, 255, 0.6);
+    transition: background-color 1s;
+    -moz-transition: background-color 1s;
+    -ms-transition: background-color 1s;
+    -o-transition: background-color 1s;
+    -webkit-transition: background-color 1s;
+}
+
+.game-container .player.winner {
+    background-color: rgb(30, 30, 30);
+}
+
+.game-container .player.winner .player-name {
+    color: #fff;
+}
+
+.game-container .player.winner .total-score {
+    color: #fff;
 }
 
 .bor {
@@ -93,4 +114,79 @@ button {
 
 button:hover {
     background-color: rgba(238, 238, 238, 0.8);
+}
+
+.dice-container {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    background: var(--background-src-img);
+    background-size: cover;
+    overflow: hidden;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+}
+
+.current-score-container {
+    flex-direction: column;
+    gap: 20px;
+    background-color: #cd0404;
+    text-transform: uppercase;
+    padding: 40px;
+    font-size: 0.6em;
+    border-radius: 7px;
+    color: white;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+}
+
+.player-info-container {
+    flex-direction: column;
+    gap: 50px;
+    text-transform: uppercase;
+}
+
+.player-info-container .total-score {
+    font-size: 1.8em;
+    font-weight: bolder;
+    color: #cd0404;
+}
+
+.player-name {
+    font-weight: bold;
+    font-size: 1.4em;
+}
+
+.dice-container.rolling {
+    animation: animateRoll 1s linear infinite;
+    -webkit-animation: animateRoll 1s linear infinite;
+}
+
+@keyframes animateRoll {
+    0% {
+        background: url("./imgs/dice-1.svg");
+    }
+    15% {
+        background: url("./imgs/dice-2.svg");
+    }
+    30% {
+        background: url("./imgs/dice-3.svg");
+    }
+    45% {
+        background: url("./imgs/dice-4.svg");
+    }
+    60% {
+        background: url("./imgs/dice-5.svg");
+    }
+    75% {
+        background: url("./imgs/dice-6.svg");
+    }
+    100% {
+        background: url("./imgs/dice-1.svg");
+    }
 }
