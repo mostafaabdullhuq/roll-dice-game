@@ -7,10 +7,12 @@ let diceContainer = document.querySelector(".dice-container"),
     winnerAudio = new Audio("./sounds/winner-sound.mp3"),
     failAudio = new Audio("./sounds/fail-sound.mp3"),
     rollDiceAudio = new Audio("./sounds/dice-roll.mp3"),
+    holdScoreAudio = new Audio("./sounds/hold-score.wav"),
+    newGameAudio = new Audio("./sounds/new-game.wav"),
     currentScores,
     activePlayer,
     isPlayerWon,
-    highScore = 10;
+    highScore = 100;
 
 function resetGame() {
     // reset variables
@@ -50,6 +52,11 @@ function rollDice() {
     // add rolling class to dice container to animate rolling
     diceContainer.classList.add("rolling");
 
+    // disable buttons while rolling
+    rollDiceBtn.disabled = true;
+    holdScoresBtn.disabled = true;
+    newGameBtn.disabled = true;
+
     // play rolling dice audio
     rollDiceAudio.play();
 
@@ -63,7 +70,10 @@ function rollDice() {
         diceContainer.style = `--background-src-img: url(./imgs/dice-${diceRandVal}.svg)`;
 
         // stop dice playing audio
-        rollDiceAudio.stop();
+        rollDiceAudio.load();
+        rollDiceBtn.disabled = false;
+        holdScoresBtn.disabled = false;
+        newGameBtn.disabled = false;
     }, Math.floor(1000));
 
     // return the value of the dice
@@ -72,6 +82,16 @@ function rollDice() {
 
 // function to switch current player
 let switchPlayer = () => {
+    // play change player audio
+    holdScoreAudio.play();
+
+    holdScoresBtn.disabled = true;
+    // reset audio to beginning after 500ms
+    setTimeout(() => {
+        holdScoreAudio.load();
+        holdScoresBtn.disabled = false;
+    }, 500);
+
     // remove the active class from the current player
     document.querySelector(`.game-container .player.player-${activePlayer + 1}`).classList.remove("active");
 
@@ -89,7 +109,6 @@ let switchPlayer = () => {
 rollDiceBtn.addEventListener("click", function () {
     // call the rollDice function and store the dice value into variable
     let diceValue = rollDice();
-
     // check if the rolling animation is still active every 100ms
     let rollingStatus = setInterval(() => {
         // if the animation finished
@@ -109,6 +128,7 @@ rollDiceBtn.addEventListener("click", function () {
                     winnerAudio.play();
                     document.querySelector(`.player-${activePlayer + 1}`).classList.add("winner");
                     document.querySelector(`.player-${activePlayer + 1} .player-name`).textContent += " 🏆";
+
                     document.querySelector(`.player-${activePlayer + 1} .total-score`).textContent =
                         +document.querySelector(`.player-${activePlayer + 1} .total-score`).textContent + currentScores[activePlayer];
                     rollDiceBtn.disabled = true;
@@ -123,6 +143,7 @@ rollDiceBtn.addEventListener("click", function () {
 
 // when user click on hold score button
 holdScoresBtn.addEventListener("click", () => {
+    // if player current score
     if (currentScores[activePlayer] !== 0) {
         // get the current active player score element
         let currentPlayer = document.querySelector(`.player-${activePlayer + 1} .total-score`);
@@ -134,6 +155,15 @@ holdScoresBtn.addEventListener("click", () => {
     switchPlayer();
 });
 
+// when new game button is clicked
 newGameBtn.addEventListener("click", function () {
+    // play new game audio
+    newGameAudio.play();
+    newGameBtn.disabled = true;
+
+    setTimeout(() => {
+        newGameAudio.load();
+        newGameBtn.disabled = false;
+    }, 3000);
     resetGame();
 });
